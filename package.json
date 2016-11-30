@@ -14,7 +14,10 @@
   "author": "sara cashman",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.7.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

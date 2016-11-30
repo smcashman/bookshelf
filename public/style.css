@@ -1,0 +1,12 @@
+* {
+	text-align:center;
+}
+
+
+#bookTitle{
+	font-weight: bold;
+}
+
+#bookAuthor{
+	font-weight:italic;
+}
