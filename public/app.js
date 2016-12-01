@@ -31,25 +31,34 @@ var booklist = {
     ]
 };
 
-function getBooklist(callbackFn) {
-    setTimeout(function(){ callbackFn(booklist)}, 100);
-}
+// function getBooklist(callbackFn) {
+//     setTimeout(function(){ callbackFn(booklist)}, 100);
+// }
 
-// this function stays the same when we connect
-// to real API later
-function displayBooklist(data) {
-    for (index in data.bookInfo) {
-       $('.displayExistingTitles').append(
-        '<div id="booklisting> <p id="bookTitle">Title: ' + data.bookInfo[index].title+ '</p><p id="bookAuthor"> Author: '+ data.bookInfo[index].author+ '</p><button id="Edit"> Edit </button><button id="Delete"> Delete </button></div>');
-    }
-}
+// // this function stays the same when we connect
+// // to real API later
+// function displayBooklist(data) {
+//     for (index in data.bookInfo) {
+//        $('.displayExistingTitles').append(
+//         '<div id="booklisting> <p id="bookTitle">Title: ' + data.bookInfo[index].title+ '</p><p id="bookAuthor"> Author: '+ data.bookInfo[index].author+ '</p><button id="Edit"> Edit </button><button id="Delete"> Delete </button></div>');
+//     }
+// }
 
-// this function can stay the same even when we
-// are connecting to real API
-function getAndDisplayBooklist() {
-    getBooklist(displayBooklist);
-}
+// // this function can stay the same even when we
+// // are connecting to real API
+// function getAndDisplayBooklist() {
+//     getBooklist(displayBooklist);
+// }
 
+$(document).ready(function(){
+$("#showBooks").click(function({
+  $.getJSON("http://localhost:8080/books", function(data){
+        var myResponse = (data.response);
+        $(".displayExistingTitles").append('<p>'+myResponse+'</p>')
+    });
+});
+
+});
 // $(function() {
 //     getAndDisplayBooklist();
 // })
