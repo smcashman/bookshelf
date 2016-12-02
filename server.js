@@ -32,8 +32,8 @@ app.use(bodyParser.json());
             if (err)
                 res.send(err);
             console.log(book)
-            res.json({ message: 'Book added!' });
-            
+            // res.json({ message: 'Book added!' });
+            res.redirect('/');
         });   
     });
 		

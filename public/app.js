@@ -51,19 +51,57 @@ var booklist = {
 // }
 
 $(document).ready(function(){
+
+// $('#submitButton').click(function(){
+//      $.ajax({
+//             url: "http://localhost:8080/books",
+//             data: "{title:'anything'}",
+//             type: "post",
+//             success: function(){
+//               $('#submitSuccess').html('<p>Book successfully added</p>');
+                
+//             }
+//         })
+// })
+
 $("#showBooks").click(function(){
-    console.log("I HAVE BEEN STRUCK")
+   
   $.getJSON("http://localhost:8080/books", function(data){
         // var myResponse = (data.title);
          $.each(data, function(index, value){
-        console.log(value.title);
-      $(".displayExistingTitles").append('<p>'+value.title+'</p>')
-    });
         
+      $(".displayExistingTitles").append('<div><p><span class="bookTitle">'+value.title+' </span> '+value.author+' '+value.source+' <button class="deleteButton" id='+value._id+'>Delete</button><button class="editButton" id='+value._id+'>Edit</button></p></div>')
     });
-});
+        $('.deleteButton').click(function(){
+            var buttonId = $(this).attr('id');
+        $.ajax({
+            url: "http://localhost:8080/books/"+buttonId,
+            type: "delete",
+            success: function(){
+              $('button#'+buttonId).closest('div').remove();
+                console.log("item deleted");
+                
+            }
+        })
+        
+        })
+
+        $('.editButton').click(function(){
+            var title = $(this).parent("p").children("span.bookTitle").text();
+            $(this).parent("p").children('span.bookTitle').html("<input type='text' value="+title+">")
+            console.log(title);
+
+        })
+    });
+
 
 });
+
+
+
+});
+
+
 // $(function() {
 //     getAndDisplayBooklist();
 // })
