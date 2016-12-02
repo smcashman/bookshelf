@@ -33,7 +33,7 @@ app.use(bodyParser.json());
                 res.send(err);
             console.log(book)
             res.json({ message: 'Book added!' });
-             res.redirect('/')
+            
         });   
     });
 		
@@ -58,7 +58,7 @@ app.use(bodyParser.json());
 
 // delete a book
 	app.delete('/books/:_id', function(req, res){
-    Novel.findByIdAndRemove(req.params._id, function(err, item) {
+    Novel.findByIdAndRemove(req.params._id, function(err, book) {
         if (err){
             return res.status(500).json({
                // message: 'Internal Server Error'

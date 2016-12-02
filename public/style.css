@@ -10,3 +10,7 @@
 #bookAuthor{
 	font-weight:italic;
 }
+
+.buttonWrapper {
+	margin-top: 20px;
+}

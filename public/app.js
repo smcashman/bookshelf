@@ -51,10 +51,15 @@ var booklist = {
 // }
 
 $(document).ready(function(){
-$("#showBooks").click(function({
+$("#showBooks").click(function(){
+    console.log("I HAVE BEEN STRUCK")
   $.getJSON("http://localhost:8080/books", function(data){
-        var myResponse = (data.response);
-        $(".displayExistingTitles").append('<p>'+myResponse+'</p>')
+        // var myResponse = (data.title);
+         $.each(data, function(index, value){
+        console.log(value.title);
+      $(".displayExistingTitles").append('<p>'+value.title+'</p>')
+    });
+        
     });
 });
 
