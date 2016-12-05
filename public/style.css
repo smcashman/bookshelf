@@ -14,3 +14,15 @@
 .buttonWrapper {
 	margin-top: 20px;
 }
+
+.showAddForm {
+	display:none;
+}
+
+#showBooks {
+	display:none;
+}
+
+.updateButton {
+	display:none;
+}

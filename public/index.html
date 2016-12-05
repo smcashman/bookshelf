@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title> Books </title>
-	<link rel="stylesheet" href="style.css"/> 
+    <meta charset="UTF-8">
+    <title> Books </title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+    <h1> Welcome to your Bookshelf</h1>
 
-	<div class='addNewTitle'>
-		<h2> Add a new title here </h2>
-		<form action="/books" method="POST">
-  		<input id="title" type="text" placeholder="Title" name="title">
-  		<input type="text" placeholder="author" name="author">
-  		<input type="text" placeholder="source" name="source">
-  		<button type="submit" id="submitButton">Submit</button>
-  		<div id="submitSuccess"></div>
-		</form>
-	</div>
-	<div id="buttonWrapper">
-	<button id="showBooks"> Show Me My Books </button>
-</div>
-	<div class='displayExistingTitles'>
-	</div>
-	
+    <div id="buttonWrapper">
+        <button id="showBooks"> Show Me My Books </button>
+    </div>
+    <div class='displayExistingTitles'>
+    </div>
 
-	
-	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
-	<script src="app.js"></script>
-	
+    <div class='addNewTitle'>
+        <h2 id='addTitleToggle'>Add a new title here</h2>
+    </div>
+    <div class='showAddForm'>
+        <form action="/books" method="POST">
+            <input id="title" type="text" placeholder="Title" name="title">
+            <input type="text" placeholder="author" name="author">
+            <input type="text" placeholder="source" name="source">
+            <button type="submit" id="submitButton">Submit</button>
+            <div id="submitSuccess"></div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script src="app.js"></script>
+
 </body>
+
 </html>

@@ -26,7 +26,8 @@ app.use(bodyParser.json());
 	app.post('/books', function(req,res){
 			book = new Novel({title: req.body.title,
 							  author: req.body.author,
-							  source: req.body.source	});
+							  source: req.body.source,
+                });
 
  			book.save(function(err) {
             if (err)
@@ -73,9 +74,14 @@ app.use(bodyParser.json());
 //update a book
 app.put('/books/:_id', function(req, res){
     var queryID = {_id: req.params._id}
-    console.log(queryID)
-    var updateThis = {title: req.body.title};
-    console.log(updateThis)
+   var updateThis = req.body;
+    // console.log(updateThis)
+    updatedbook = new Novel({title: req.body.title,
+                author: req.body.author,
+                source: req.body.source,
+                });
+    console.log(req.params)
+    console.log(req.body)
     Novel.findOneAndUpdate(queryID, updateThis,
      function(err, book){
         if (err){
