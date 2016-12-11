@@ -20,13 +20,32 @@
         <h2 id='addTitleToggle'>Add a new title here</h2>
     </div>
     <div class='showAddForm'>
-        <form action="/books" method="POST">
+        <form action="/books" method="POST" id='bookInfoForm'>
             <input id="title" type="text" placeholder="Title" name="title">
             <input type="text" placeholder="author" name="author">
-            <input type="text" placeholder="source" name="source">
-            <button type="submit" id="submitButton">Submit</button>
+            <input type="text" placeholder="source" name="source"><br>
+           <select name="readName" class="readDropDown"><option value="yes" name="yes" class="readYes">Yes</option><option value="no" name="no" class="readNo">No</option></select>
+            <p> Enter notes or review here</p>
+            <textarea name ="infoForm" id='reviewBox' form='bookInfoForm'>Enter text here...</textarea>
+            <select name="tagsName" class="tagsDropDown"><option value="TBR" name="TRB" class="tagsTBR">To be read</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="reference" name="reference" class="bookReference">Reference</option></select>
+            <button type="submit" id="submitButton" form="bookInfoForm">Submit</button>
             <div id="submitSuccess"></div>
         </form>
+    </div>
+
+    <div class="suggestionBox">
+        <h2> Looking for your next book? </h2>
+        <div id="suggestSearchBox">
+            <p> Enter a favorite title or author to find new suggestions</p>
+            <form id="bookSearchForm">
+                <textarea form="bookSearchForm" id="bookSearchTerms">
+                    
+                </textarea>
+                <button type="submit" id="submitSearch" form="bookSearchForm">Search!</button>
+            </form>
+        </div>
+    </div>
+    <div class="showRecommends">
     </div>
 
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>

@@ -5,6 +5,9 @@ var BookSchema   = new Schema({
     title: String,
     author: String,
     source: String,
+    readBook: String,
+    review: String,
+    tags: String,
     
 });
 

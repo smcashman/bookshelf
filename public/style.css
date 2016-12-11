@@ -26,3 +26,15 @@
 .updateButton {
 	display:none;
 }
+
+#titleStyle {
+	font-weight: bold;
+}
+
+#tagsBox{
+	width:300px;
+}
+
+#suggestSearchBox {
+	display:none;
+}

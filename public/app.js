@@ -1,13 +1,15 @@
 $(document).ready(function() {
-
-
-    //$("#showBooks").click(function() {
-
+    var searchTerm = ''
     $.getJSON("http://localhost:8080/books", function(data) {
         // var myResponse = (data.title);
         $.each(data, function(index, value) {
+            
 
-            $(".displayExistingTitles").append('<div><p class=' + value._id + '><span class="bookTitle">' + value.title + ' </span><span class="bookAuthor"> ' + value.author + ' </span><span class="bookSource"> ' + value.source + ' </span><button  id=' + value._id + ' class="deleteButton">Delete</button><button class="editButton">Edit</button><button class="updateButton">Update</button></p></div>')
+
+
+            $(".displayExistingTitles").append('<div><p class=' + value._id + '><span class="bookTitle"> Title: ' + value.title + ' </span><span class="bookAuthor">Author: ' + value.author + ' </span><span class="bookSource">Source: ' + value.source + ' </span><span class="read"> ' + value.readBook + ' </span><span class="bookReview"> notes: ' + value.review + ' </span><span class="bookTags"> ' + value.tags + ' </span><button  id=' + value._id + ' class="deleteButton">Delete</button><button class="editButton">Edit</button><button class="updateButton">Update</button></p></div>')
+
+
         });
 
         $('.deleteButton').click(function() {
@@ -28,21 +30,41 @@ $(document).ready(function() {
         $('.editButton').click(function() {
 
 
-           // $(this).text('Update').addClass('editSubmitButton');
-           $(this).hide();
-        $(this).parent("p").children('.updateButton').show();
+            $(this).hide();
+            $(this).parent("p").children('.updateButton').show();
+
             var title = $(this).parent("p").children("span.bookTitle").text();
+            console.log(title)
             $(this).parent("p").children('span.bookTitle').html("<input id='editTitle' name='editTitle' type='text' value=" + title + ">");
 
             var author = $(this).parent("p").children("span.bookAuthor").text();
+            console.log(author)
             $(this).parent("p").children('span.bookAuthor').html("<input id='editAuthor' name='editAuthor' type='text' value=" + author + ">");
 
             var source = $(this).parent("p").children("span.bookSource").text();
             $(this).parent("p").children('span.bookSource').html("<input id='editSource' name='editSource' type='text' value=" + source + ">");
 
-            console.log(title);
-            console.log(author);
-            console.log(source);
+            var readItText = $(this).parent("p").children("span.read").text();
+            if (readItText == 'yes') {
+                $(this).parent("p").children("span.read").html(' <select name="readName" class="readDropDown"><option value="yes" name="yes" class="readYes" selected>Yes</option><option value="no" name="no" class="readNo">No</option></select>')
+            } else {
+                $(this).parent("p").children("span.read").html(' <select name="readName" class="readDropDown"><option value="no" name="no" class="readNo" selected>No</option><option value="yes" name="yes" class="readYes">Yes</option></select>')
+            }
+
+            var review = $(this).parent("p").children("span.bookReview").text();
+            $(this).parent("p").children('span.bookReview').html("<input id='editReview' name='editReview' type='text' value=" + review + ">");
+
+             var tagOption = $(this).parent("p").children("span.bookTags").text();
+            if (tagOption == 'To be read') {
+                $(this).parent("p").children("span.bookTags").html(' <select name="tagsName" class="tagsDropDown"><option value="TBR" name="TRB" class="tagsTBR" selected>To be read</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="reference" name="reference" class="bookReference">Reference</option></select>')
+            } else if (tagOption == 'Wishlist') {
+                $(this).parent("p").children("span.bookTags").html(' <select name="tagsName" class="tagsDropDown"><option value="wishlist" name="wishlist" class="wishList" selected>Wishlist</option><option value="TBR" name="TRB" class="tagsTBR">To be read</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="reference" name="reference" class="bookReference">Reference</option></select>')
+            } else if (tagOption == 'Favorites') {
+                $(this).parent("p").children("span.bookTags").html(' <select name="tagsName" class="tagsDropDown"><option value="favorites" name="favorites" class="favoritedBook" selected>Favorites</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="TBR" name="TRB" class="tagsTBR">To be read</option><option value="reference" name="reference" class="bookReference">Reference</option></select>')
+            } else {
+                $(this).parent("p").children("span.bookTags").html(' <select name="tagsName" class="tagsDropDown"><option value="reference" name="reference" class="bookReference" selected>Reference</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="TBR" name="TRB" class="tagsTBR">To be read</option></select>')
+            }
+
 
             $('.updateButton').click(function() {
 
@@ -51,53 +73,86 @@ $(document).ready(function() {
                 var editedTitle = $('p.' + buttonClassUpdate).children('span').children('input#editTitle').val();
                 var editedAuthor = $('p.' + buttonClassUpdate).children('span').children('input#editAuthor').val();
                 var editedSource = $('p.' + buttonClassUpdate).children('span').children('input#editSource').val();
-                console.log(buttonClassUpdate);
-                console.log(editedTitle);
-                console.log(editedAuthor);
-                console.log(editedSource);
+                var editedRead = $('p.' + buttonClassUpdate).children('span.read').children('.readDropDown').val();
+                var editedReview = $('p.' + buttonClassUpdate).children('span').children('input#editReview').val();
+                var editedTags = $('p.' + buttonClassUpdate).children('span.bookTags').children('input#editTags').val();
+
+
+                console.log(editedRead)
+
+
+
+
                 var updateObject = new Object();
                 updateObject._id = buttonClassUpdate;
                 updateObject.title = editedTitle;
                 updateObject.author = editedAuthor;
                 updateObject.source = editedSource;
+                updateObject.readBook = editedRead;
+                updateObject.review = editedReview;
+                updateObject.tags = editedTags
                 console.log(updateObject);
-                var objectString = JSON.stringify(updateObject);
-                console.log(objectString)
 
                 $.ajax({
                     url: "http://localhost:8080/books/" + buttonClassUpdate,
-                    type: "Put",
+                    type: "PUT",
                     data: updateObject,
                     success: function() {
 
                         console.log(buttonClassUpdate);
 
-
-
-                        // $('button#' + buttonIdUpdate).closest('div').remove();
-
-
                     }
-                })
-            })
 
-        })
 
+                });
+
+
+            });
+
+        });
 
     });
-
-
-    // });
-
+    $('textarea#reviewBox').click(function() {
+        $(this).text('');
+    })
     $('.addNewTitle h2').click(function() {
         $('.showAddForm').toggle();
-        if ($(this).text()=='Add a new title here'){
-             $(this).text('Click to hide form');
-        }
-        else {
+        if ($(this).text() == 'Add a new title here') {
+            $(this).text('Click to hide form');
+        } else {
             $(this).text('Add a new title here')
         }
-       
+
     });
 
+    $('.suggestionBox').click(function() {
+        $('#suggestSearchBox').show();
+    });
+
+    $('#submitSearch').click(function() {
+        //searchTerm = $('#bookSearchForm').val();
+        console.log(searchTerm)
+
+        searchTerm = 'harry potter'
+
+        var params = {
+            q: searchTerm,
+            type: 'books',
+            k: '250853-Bookshel-AY9XODQO',
+
+        };
+        url = 'https://www.tastekid.com/api/similar?q=' + searchTerm;
+
+
+        $.getJSON(url, params, function(data) {
+            //console.log(data);
+            myData = data.items
+            console.log(data)
+        });
+
+        // $.each(data, function(index, value) {
+        //     var newTitle = data.title
+        //     $('.showRecommends').append('<p> '+)
+        // });
+    });
 });

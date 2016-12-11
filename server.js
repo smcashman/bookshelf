@@ -11,8 +11,12 @@ var BookSchema   = new Schema({
     title: String,
     author: String,
     source: String,
+    readBook: String,
+    review: String,
+    tags: String,
     
 });
+
 var Novel = mongoose.model('Novel', BookSchema);
 
 mongoose.connect('mongodb://Admin1:Password1@ds111178.mlab.com:11178/bookshelf')
@@ -24,15 +28,21 @@ app.use(bodyParser.json());
 
 // add a book
 	app.post('/books', function(req,res){
+
 			book = new Novel({title: req.body.title,
 							  author: req.body.author,
 							  source: req.body.source,
+                              readBook: req.body.readName,
+                              review: req.body.infoForm,
+                              tags: req.body.tagsName
                 });
 
  			book.save(function(err) {
             if (err)
                 res.send(err);
-            console.log(book)
+            console.log(req.body.review)
+            console.log(req.body.tags)
+            //console.log(book)
             // res.json({ message: 'Book added!' });
             res.redirect('/');
         });   
@@ -79,6 +89,9 @@ app.put('/books/:_id', function(req, res){
     updatedbook = new Novel({title: req.body.title,
                 author: req.body.author,
                 source: req.body.source,
+                read: req.body.read,
+                review: req.body.review,
+                tags: req.body.tags
                 });
     console.log(req.params)
     console.log(req.body)
