@@ -11,11 +11,11 @@
     <h1> Welcome to your Bookshelf</h1>
 
     <div id="buttonWrapper">
-        <form id="filterBookForm">
+        <!-- <form id="filterBookForm"> -->
         <label for="filterBook">Choose a Shelf to display titles</label>
             <select name="filterbooks" class="filterBooks" id="filterBook"><option value="TBR" name="TBR" class="tagsTBR">To be read</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="reference" name="reference" class="bookReference">Reference</option><option value="readandreturn" name="readandreturn" class="ReadandReturn">Read & Returned</option></select>
             <button id="showBooks" form="filterBookForm"> Filter Books </button>
-        </form>
+       <!--  </form> -->
     </div>
 
     
@@ -46,12 +46,10 @@
         <h2> Looking for your next book? </h2>
         <div id="suggestSearchBox">
             <p> Enter a favorite title or author to find new suggestions</p>
-            <form id="bookSearchForm">
-                <textarea form="bookSearchForm" id="bookSearchTerms">
-                    
-                </textarea>
+          
+                <input type="text" form="bookSearchForm" id="bookSearchTerms">
                 <button type="submit" id="submitSearch" form="bookSearchForm">Search!</button>
-            </form>
+           
         </div>
     </div>
     <div class="showRecommends">
