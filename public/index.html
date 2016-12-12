@@ -11,8 +11,16 @@
     <h1> Welcome to your Bookshelf</h1>
 
     <div id="buttonWrapper">
-        <button id="showBooks"> Show Me My Books </button>
+        <form id="filterBookForm">
+        <label for="filterBook">Choose a Shelf to display titles</label>
+            <select name="filterbooks" class="filterBooks" id="filterBook"><option value="TBR" name="TBR" class="tagsTBR">To be read</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="reference" name="reference" class="bookReference">Reference</option><option value="readandreturn" name="readandreturn" class="ReadandReturn">Read & Returned</option></select>
+            <button id="showBooks" form="filterBookForm"> Filter Books </button>
+        </form>
     </div>
+
+    
+
+
     <div class='displayExistingTitles'>
     </div>
 
@@ -22,12 +30,13 @@
     <div class='showAddForm'>
         <form action="/books" method="POST" id='bookInfoForm'>
             <input id="title" type="text" placeholder="Title" name="title">
-            <input type="text" placeholder="author" name="author">
-            <input type="text" placeholder="source" name="source"><br>
-           <select name="readName" class="readDropDown"><option value="yes" name="yes" class="readYes">Yes</option><option value="no" name="no" class="readNo">No</option></select>
-            <p> Enter notes or review here</p>
-            <textarea name ="infoForm" id='reviewBox' form='bookInfoForm'>Enter text here...</textarea>
-            <select name="tagsName" class="tagsDropDown"><option value="TBR" name="TRB" class="tagsTBR">To be read</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="reference" name="reference" class="bookReference">Reference</option></select>
+            <input type="text" placeholder="author" name="author"><br>
+            <label for="chooseReadOption">Have you read it?</label>
+           <select name="readName" class="readDropDown" id="chooseReadOption"><option value="yes" name="yes" class="readYes">Yes</option><option value="no" name="no" class="readNo">No</option></select><br>
+             <label for="reviewBox">Add review or comments here</label><br>
+            <textarea name ="infoForm" id='reviewBox' form='bookInfoForm'>Enter text here...</textarea><br>
+            <label for="addToShelf">Choose a Shelf</label>
+            <select name="tagsName" class="tagsDropDown" id="addToShelf"><option value="TBR" name="TRB" class="tagsTBR">To be read</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="reference" name="reference" class="bookReference">Reference</option><option value="readandreturn" name="readandreturn" class="ReadandReturn">Read & Returned</option></select><br>
             <button type="submit" id="submitButton" form="bookInfoForm">Submit</button>
             <div id="submitSuccess"></div>
         </form>

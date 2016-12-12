@@ -10,7 +10,6 @@ var Schema       = mongoose.Schema;
 var BookSchema   = new Schema({
     title: String,
     author: String,
-    source: String,
     readBook: String,
     review: String,
     tags: String,
@@ -31,7 +30,6 @@ app.use(bodyParser.json());
 
 			book = new Novel({title: req.body.title,
 							  author: req.body.author,
-							  source: req.body.source,
                               readBook: req.body.readName,
                               review: req.body.infoForm,
                               tags: req.body.tagsName
@@ -88,7 +86,6 @@ app.put('/books/:_id', function(req, res){
     // console.log(updateThis)
     updatedbook = new Novel({title: req.body.title,
                 author: req.body.author,
-                source: req.body.source,
                 read: req.body.read,
                 review: req.body.review,
                 tags: req.body.tags
