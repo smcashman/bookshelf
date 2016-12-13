@@ -4,8 +4,6 @@ $(document).ready(function() {
 
     $.getJSON("http://localhost:8080/books", function(data) {
 
-        // $('#displayBookshelf').click(function(){
-        //     $('#buttonWrapper').toggle();
 
         $.each(data, function(index, value) {
 
@@ -15,7 +13,7 @@ $(document).ready(function() {
 
         });
         $(".displayExistingTitles").append('<div><p id= "hideBookDisplay"> Click to hide</p></div>')
-    // });
+   
         $('#showBooks').click(function() {
             var shelfOption = $('.filterBooks').val();
             console.log(shelfOption)
@@ -223,7 +221,7 @@ window.onclick = function(event) {
 }
 
 // show suggestion modal
-var suggestModal = document.getElementById('addTitleModal');
+var suggestModal = document.getElementById('showSuggestionModal');
 
 // Get the button that opens the modal
 var btn = document.getElementById("openSuggestionOverlay");
