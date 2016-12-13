@@ -4,18 +4,18 @@ $(document).ready(function() {
 
     $.getJSON("http://localhost:8080/books", function(data) {
 
-
+        // $('#displayBookshelf').click(function(){
+        //     $('#buttonWrapper').toggle();
 
         $.each(data, function(index, value) {
-            var myData = data.response
 
 
             $(".displayExistingTitles").append('<div class="' + value.tags + '"><p class=' + value._id + '><span class="bookTitle"> Title: ' + value.title + ' </span><span class="bookAuthor">Author: ' + value.author + ' </span><span class="read">Have you read it? ' + value.readBook + ' </span><span class="bookReview"> notes: ' + value.review + ' </span><span class="bookTags">Tags: ' + value.tags + ' </span><button  id=' + value._id + ' class="deleteButton">Delete</button><button class="editButton">Edit</button><button class="updateButton">Update</button></p></div>')
 
 
-
-
         });
+        $(".displayExistingTitles").append('<div><p id= "hideBookDisplay"> Click to hide</p></div>')
+    // });
         $('#showBooks').click(function() {
             var shelfOption = $('.filterBooks').val();
             console.log(shelfOption)
@@ -143,7 +143,6 @@ $(document).ready(function() {
         searchTerm = $('#bookSearchTerms').val();
         console.log(searchTerm)
 
-        //searchTerm = 'harry potter'
 
         var params = {
             q: searchTerm,
@@ -164,7 +163,7 @@ $(document).ready(function() {
         $.each(myData, function(index, value) {
             var newTitle = value.Name
             var newDescription = value.wTeaser
-            
+
             $('.showRecommends').append('<p> '+newTitle+'</p>');
             $('.showRecommends').append('<p> '+newDescription+'</p>')
         });
@@ -172,5 +171,81 @@ $(document).ready(function() {
     });
 
 
+// add form modal 
+var addModal = document.getElementById('addTitleModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("openAddButton");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    addModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    addModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == addModal) {
+        addModal.style.display = "none";
+    }
+}
+// show books modal
+var showModal = document.getElementById('showBooksModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("displayBookshelf");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("showClose")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    showModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    showModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == showModal) {
+        showModal.style.display = "none";
+    }
+}
+
+// show suggestion modal
+var suggestModal = document.getElementById('addTitleModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("openSuggestionOverlay");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("suggestClose")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    suggestModal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    suggestModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == suggestModal) {
+        suggestModal.style.display = "none";
+    }
+}
 
 });

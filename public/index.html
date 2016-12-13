@@ -4,30 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <title> Books </title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css"> 
 </head>
 
 <body>
-    <h1> Welcome to your Bookshelf</h1>
+    <h1 id="headTitle"> Welcome to your Bookshelf</h1>
+    <div class="bookDisplayImage">
+    <img src="retro.jpg" class="imgSquare" alt="click to get recommendations">
+    <h2><span id="openSuggestionOverlay">Looking for new suggestions?</span></h2>
+    </div>
+    <div class="bookDisplayImage">
+    <img src="books.jpeg" class="imgSquare" alt="click to display your books">
+    <h2><span id="displayBookshelf">Click to display your books</span></h2>
+    </div>
+    <div class="bookDisplayImage">
+    <img src="typewriter.jpeg" class="imgSquare" alt="click to add new title">
+    <h2><span id="openAddButton"> Click to add new titles </span></h2>
+</div>
 
+    <div id="showBooksModal" class="booksModal">
+
+    <div class='modalShowBooks' id="openBooksModal">
+        <span class="showClose">&times;</span>
     <div id="buttonWrapper">
-        <!-- <form id="filterBookForm"> -->
-        <label for="filterBook">Choose a Shelf to display titles</label>
+           
+            <label for="filterBook">Choose a Shelf to display titles</label>
+
             <select name="filterbooks" class="filterBooks" id="filterBook"><option value="TBR" name="TBR" class="tagsTBR">To be read</option><option value="wishlist" name="wishlist" class="wishList">Wishlist</option><option value="favorites" name="favorites" class="favoritedBook">Favorites</option><option value="reference" name="reference" class="bookReference">Reference</option><option value="readandreturn" name="readandreturn" class="ReadandReturn">Read & Returned</option></select>
             <button id="showBooks" form="filterBookForm"> Filter Books </button>
-       <!--  </form> -->
+         <div class='displayExistingTitles'>
     </div>
+        
+    </div>
+</div>
+</div>
 
     
 
 
-    <div class='displayExistingTitles'>
-    </div>
+   
 
-    <div class='addNewTitle'>
-        <h2 id='addTitleToggle'>Add a new title here</h2>
-    </div>
-    <div class='showAddForm'>
+    <main class="cd-main-content">
+        
+        <!-- your content here -->
+    </main>
+    
+
+    <!-- <div class="cd-panel from-right">
+        <header class="cd-panel-header">
+            <h1>Title Goes Here</h1>
+            <a href="#0" class="cd-panel-close">Close</a>
+        </header>
+        <div class="cd-panel-container">
+            <div class="cd-panel-content"> -->
+    <div id="addTitleModal" class="addModal">
+
+    <div class='showAddForm' id="openAddModal">
+        <span class="close">&times;</span>
         <form action="/books" method="POST" id='bookInfoForm'>
             <input id="title" type="text" placeholder="Title" name="title">
             <input type="text" placeholder="author" name="author"><br>
@@ -41,22 +75,31 @@
             <div id="submitSuccess"></div>
         </form>
     </div>
+    </div>
 
+    
+<div id="showSuggestionModal" class="suggestionModal">
+
+    <div class='modalSuggestions' id="openSuggestionModal">
+        <span class="suggestClose">&times;</span>
     <div class="suggestionBox">
-        <h2> Looking for your next book? </h2>
         <div id="suggestSearchBox">
             <p> Enter a favorite title or author to find new suggestions</p>
           
                 <input type="text" form="bookSearchForm" id="bookSearchTerms">
                 <button type="submit" id="submitSearch" form="bookSearchForm">Search!</button>
-           
         </div>
     </div>
     <div class="showRecommends">
     </div>
+        </div> 
+    </div>
+    
+     
 
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script src="app.js"></script>
+    <script src="modernizr.js"></script>
 
 </body>
 
